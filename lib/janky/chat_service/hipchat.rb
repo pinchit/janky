@@ -13,7 +13,8 @@ module Janky
         @from = settings["JANKY_CHAT_HIPCHAT_FROM"] || "CI"
       end
 
-      def speak(message, room_id, options = {:color => "yellow", :message_format => "text"})
+      def speak(message, room_id, options = {:color => "yellow"})
+        options = {:message_format => "text"}.merge(options)
         @client[room_id].send(@from, message, options)
       end
 
